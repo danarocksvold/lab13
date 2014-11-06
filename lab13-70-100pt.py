@@ -18,7 +18,9 @@ enemy1 = drawpad.create_rectangle(290,180,330,200, fill="blue")
 enemy2 = drawpad.create_rectangle(490,380,530,400, fill="blue")
 enemy3 = drawpad.create_rectangle(390,280,430,300, fill="blue")
 # Create your "enemies" here, before the class
-
+direction = 1
+direction2 = 2
+direction3 = 2
 
 class MyApp:
 	def __init__(self, parent):
@@ -62,12 +64,30 @@ class MyApp:
 	    global player
 	    # Remember to include your "enemies" with "global"
 	    global enemy1
-	    drawpad.move(enemy1,1,0)
+	    global direction
+            global direction2
+            global direction3
 	    global enemy2
-	    drawpad.move(enemy2,-3,0)
 	    global enemy3
-	    drawpad.move(enemy3,5,0)
 	    # Uncomment this when you're ready to test out your animation!
+            x1, y1, x2, y2 = drawpad.coords(enemy1)
+            if x2 > drawpad.winfo_width(): 
+                    direction = - 5
+            elif x1 < 0:
+                    direction = 5
+            drawpad.move(enemy1,direction,0)
+            x1, y1, x2, y2 = drawpad.coords(enemy2)
+            if x2 > drawpad.winfo_width(): 
+                    direction2 = - 5
+            elif x1 < 0:
+                    direction2 = 5
+            drawpad.move(enemy2,direction2,0)
+            x1, y1, x2, y2 = drawpad.coords(enemy3)
+            if x2 > drawpad.winfo_width(): 
+                    direction3 = - 5
+            elif x1 < 0:
+                    direction3 = 5
+            drawpad.move(enemy3,direction3,0)
 	    drawpad.after(10,self.animate)
 		
 	def upClicked(self, event):   
